@@ -5,8 +5,8 @@ const sinon = require('sinon');
 sinon.assert.expose(chai.assert, { prefix: '' });
 const { assert } = chai;
 
-const modelFactory = require('../../factory');
 const DB = require('../../../models');
+const modelFactory = require('../../factory');
 const shipService = require('../../../services/ship');
 
 const { Ship } = DB;
@@ -79,6 +79,18 @@ describe('services/ship', () => {
 
         beforeEach(() => {
             [ship] = modelFactory(Ship, { id: 1 });
+        });
+
+        it('should throw ship not found', async () => {
+            sandbox.stub(Ship, 'findByPk')
+                .resolves(undefined);
+
+            try {
+                await shipService.getShip(1);
+                assert.fail('it should fail but pass');
+            } catch (err) {
+                assert.equal(err.message, 'Ship not found');
+            }
         });
 
         it('should return ship', async () => {

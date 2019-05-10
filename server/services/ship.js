@@ -5,6 +5,7 @@ const { Ship } = DB;
 /**
  * Create new ship
  * @param {Object} queryObj
+ * @returns {Promise<Ship>}
  */
 async function createShip(queryObj) {
     const [ship, created] = await Ship.findOrCreate(queryObj, { default: queryObj });
@@ -18,14 +19,13 @@ async function createShip(queryObj) {
 /**
  * Soft delete ship
  * @param {Number} id
+ * @returns {Promise<void>}
  */
 async function deleteShip(id) {
     const count = await Ship.destroy(id);
     if (count === 0) {
         throw new Error('Ship not found');
     }
-
-    return true;
 }
 
 /**
@@ -35,6 +35,11 @@ async function deleteShip(id) {
  */
 async function getShip(id) {
     const ship = await Ship.findByPk(id);
+
+    if (!ship) {
+        throw new Error('Ship not found');
+    }
+
     return ship;
 }
 
