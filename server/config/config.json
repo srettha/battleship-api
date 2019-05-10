@@ -1,0 +1,13 @@
+{
+    "development": {
+        "username": "postgres",
+        "password": null,
+        "database": "postgres",
+        "host": "battle-ship-db",
+        "dialect": "postgres",
+        "seederStorage": "sequelize"
+    },
+    "production": {
+        "use_env_variable": "DB_CONNECTION_STRING"
+    }
+}
