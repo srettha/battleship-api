@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: battle-ship-db
+    ports:
+      - "5432:5432"
+  api:
+    build:
+      context: ./server
+      dockerfile: dockerfile.dev
+    container_name: battle-ship-api
+    depends_on:
+      - db
+    restart: always
+    volumes:
+      - ./server:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: /usr/src/app/docker-entrypoint.sh
