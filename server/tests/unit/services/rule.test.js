@@ -122,7 +122,11 @@ describe('service/rule', () => {
         let rule;
 
         const id = 1;
-        const ruleObj = { id, coordinateX: faker.random.arrayElement([10, 15, 20, 25, 30]), coordinateY: faker.random.arrayElement([10, 15, 20, 25, 30]) };
+        const ruleObj = {
+            id,
+            coordinateX: faker.random.arrayElement([10, 15, 20, 25, 30]),
+            coordinateY: faker.random.arrayElement([10, 15, 20, 25, 30]),
+        };
 
         beforeEach(() => {
             [rule] = modelFactory(Rule, ruleObj);
