@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node
+    working_directory: ~/repo/server
+
+    steps:
+      - checkout:
+          path: ~/repo
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          name: Install
+          command: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: Lint
+          command: yarn ci:lint
+      - run:
+          name: Test
+          command: yarn ci:test
+      - run:
+          name: Test coverage
+          command: yarn ci:coverage
+      - store_test_results:
+          path: ./.reports
+      - store_artifacts:
+          path: ./.reports    
