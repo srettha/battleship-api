@@ -29,6 +29,6 @@ jobs:
           name: Test coverage
           command: yarn ci:coverage
       - store_test_results:
-          path: ./reports
+          path: ./.reports
       - store_artifacts:
-          path: ./reports    
+          path: ./.reports    
