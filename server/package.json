@@ -18,8 +18,8 @@
         "dev": "yarn db:migrate && yarn db:seed && nodemon server.js",
         "test": "mocha --reporter=mochawesome --reporter-options reportDir=./.reports/mocha ./tests/**/*.test.js",
         "ci:test": "nyc npm test",
-        "lint": "eslint --ext .js .",
-        "ci:lint": "mkdir -p ./reports && eslint --format=html --output-file ./.reports/eslint/eslint.html --max-warnings 10 --ext .js .",
+        "lint": "eslint --max-warnings 10 --ext .js .",
+        "ci:lint": "eslint --format=html --output-file ./.reports/eslint/eslint.html --max-warnings 10 --ext .js .",
         "ci:coverage": "nyc report --reporter=text-lcov | coveralls"
     },
     "pre-commit": [
