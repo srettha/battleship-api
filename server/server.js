@@ -1,10 +1,8 @@
-const debug = require('debug')('battle-api:server');
+const debug = require('debug')('battleship-api:server');
 
 const app = require('./app');
 
-app.listen(app.get('port'));
-
-app.on('listening', () => {
+app.listen(app.get('port'), () => {
     debug(`Server ready at http://localhost:${app.get('port')}`);
 });
 
