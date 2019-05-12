@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const rule = sequelize.define('Rule', {
+    const Rule = sequelize.define('Rule', {
         coordinateX: {
             allowNull: false,
             field: 'coordinate_x',
@@ -10,10 +10,15 @@ module.exports = (sequelize, DataTypes) => {
             field: 'coordinate_y',
             type: DataTypes.NUMBER,
         },
-    }, {});
+    }, {
+        paranoid: true,
+        tableName: 'rules',
+        underscore: true,
+    });
 
-    // rule.associate = function (models) {
-    // };
+    Rule.associate = ({ Game }) => {
+        Rule.hasMany(Game, { foreignKey: 'rule_id' });
+    };
 
-    return rule;
+    return Rule;
 };

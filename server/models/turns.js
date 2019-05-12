@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Turns = sequelize.define('Turns', {
+    const Turn = sequelize.define('Turn', {
         coordinate: {
             allowNull: false,
             type: DataTypes.STRING,
@@ -31,8 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         tableName: 'turns',
         underscore: true,
     });
-    Turns.associate = ({ Game }) => {
-        Turns.belongsTo(Game, { as: 'games', foreignKey: 'game_id', targetKey: 'id' });
+    Turn.associate = ({ Game }) => {
+        Turn.belongsTo(Game, { as: 'games', foreignKey: 'game_id', targetKey: 'id' });
     };
-    return Turns;
+    return Turn;
 };

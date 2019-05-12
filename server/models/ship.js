@@ -25,8 +25,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
         },
     }, {
-        tableName: 'ships',
         paranoid: true,
+        tableName: 'ships',
+        underscore: true,
     });
 
     // ship.associate = models => {
