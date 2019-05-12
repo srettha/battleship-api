@@ -27,9 +27,9 @@ module.exports = (sequelize, DataTypes) => {
         underscore: true,
     });
 
-    Game.associate = ({ GameShips, Turns }) => {
+    Game.associate = ({ GameShips, Turn }) => {
         Game.hasMany(GameShips, { as: 'ships', foreignKey: 'game_id', sourceKey: 'id' });
-        Game.hasMany(Turns, { as: 'turns', foreignKey: 'game_id', sourceKey: 'id' });
+        Game.hasMany(Turn, { as: 'turns', foreignKey: 'game_id', sourceKey: 'id' });
     };
 
     return Game;
