@@ -2,14 +2,14 @@ version: '3'
 services:
   db:
     image: postgres
-    container_name: battle-ship-db
+    container_name: battleship-db
     ports:
       - "5432:5432"
   api:
     build:
       context: ./server
       dockerfile: dockerfile.dev
-    container_name: battle-ship-api
+    container_name: battleship-api
     depends_on:
       - db
     restart: always
