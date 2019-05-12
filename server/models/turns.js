@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         underscore: true,
     });
     Turn.associate = ({ Game }) => {
-        Turns.belongsTo(Game, { as: 'games', foreignKey: 'game_id', targetKey: 'id' });
+        Turn.belongsTo(Game, { as: 'games', foreignKey: 'game_id', targetKey: 'id' });
     };
     return Turn;
 };
