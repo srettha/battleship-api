@@ -3,7 +3,7 @@
         "username": "postgres",
         "password": null,
         "database": "postgres",
-        "host": "battle-ship-db",
+        "host": "battleship-db",
         "dialect": "postgres",
         "seederStorage": "sequelize"
     },

@@ -15,7 +15,7 @@
         "start": "node server.js",
         "db:migrate": "sequelize db:migrate",
         "db:seed": "sequelize db:seed:all",
-        "dev": "yarn db:migrate && yarn db:seed && nodemon server.js",
+        "dev": "NODE_ENV=development yarn db:migrate && yarn db:seed && DEBUG='*' nodemon -L server.js",
         "test": "mocha --reporter=mochawesome --reporter-options reportDir=./.reports/mocha ./tests/**/*.test.js",
         "ci:test": "nyc npm test",
         "lint": "eslint --max-warnings 10 --ext .js .",
