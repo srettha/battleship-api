@@ -73,6 +73,9 @@ function setRoutes(router, routes) {
 }
 
 module.exports = {
-    setRoutes,
     BattleshipError,
+    isAsyncFunction,
+    setRoutes,
+    wrap,
+    wrapAll,
 };
