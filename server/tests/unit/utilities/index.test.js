@@ -8,6 +8,8 @@ const { assert } = chai;
 const utilities = require('../../../utilities');
 
 describe('utilities', () => {
+    let sandbox;
+
     let router;
 
     const normalFunc = (_req, _res, _next) => { };
@@ -24,6 +26,14 @@ describe('utilities', () => {
         assert.isFunction(utilities.wrap(func));
         assert.equal(utilities.wrap(func.constructor.name), 'Function');
     };
+
+    beforeEach(() => {
+        sandbox = sinon.createSandbox();
+    });
+
+    afterEach(() => {
+        sandbox.restore();
+    });
 
     describe('isAsyncFunction()', () => {
         it('should return false (not async function)', () => {
