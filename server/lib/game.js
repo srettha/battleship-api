@@ -21,6 +21,23 @@ class Game {
 
     /**
      * @public
+     * Check whether game has come to an end yet?
+     * @returns {Boolean}
+     */
+    endGame() {
+        for (let i = 0; i < this.x; i += 1) {
+            for (let j = 0; j < this.y; j += 1) {
+                if (this.layout[j][i] > 0) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * @public
      * Get game layout
      * @returns {Array<String>}
      */
@@ -61,23 +78,6 @@ class Game {
         }
 
         return false;
-    }
-
-    /**
-     * @public
-     * Check whether game has come to an end yet?
-     * @returns {Boolean}
-     */
-    endGame() {
-        for (let i = 0; i < this.x; i += 1) {
-            for (let j = 0; j < this.y; j += 1) {
-                if (this.layout[j][i] > 0) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -149,6 +149,7 @@ class Game {
     }
 
     /**
+     * @private
      * Lay down ships to the ocean
      */
     placeShips() {
@@ -167,6 +168,7 @@ class Game {
     }
 
     /**
+     * @private
      * Lay down shoots to the ocean
      */
     placeShoots() {
