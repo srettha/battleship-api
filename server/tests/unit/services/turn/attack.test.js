@@ -20,6 +20,7 @@ const {
 
 const modelFactory = require('../../../factory');
 
+const gameService = require('../../../../services/game');
 const turnService = require('../../../../services/turn');
 
 const GameLogic = require('../../../../lib/game');
@@ -149,6 +150,8 @@ module.exports = () => {
                 .resolves(turn);
             sandbox.stub(GameInformations, 'update')
                 .resolves([1, gameInformation]);
+            sandbox.stub(gameService, 'updateGameState')
+                .returns(game);
             sandbox.stub(GameLogic.prototype, 'endGame')
                 .returns(false);
 
@@ -167,6 +170,8 @@ module.exports = () => {
                 .resolves(turn);
             sandbox.stub(GameInformations, 'update')
                 .resolves([1, sankGameInformation]);
+            sandbox.stub(gameService, 'updateGameState')
+                .returns(game);
             sandbox.stub(GameLogic.prototype, 'endGame')
                 .returns(false);
             sandbox.stub(Ship, 'findOne')
@@ -187,6 +192,8 @@ module.exports = () => {
                 .resolves(turn);
             sandbox.stub(GameInformations, 'update')
                 .resolves([1, sankGameInformation]);
+            sandbox.stub(gameService, 'updateGameState')
+                .returns(game);
             sandbox.stub(GameLogic.prototype, 'endGame')
                 .returns(true);
             sandbox.stub(Turn, 'count')
