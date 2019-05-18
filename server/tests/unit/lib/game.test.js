@@ -93,13 +93,17 @@ module.exports = () => {
         describe('isAjacent()', () => {
             it('should return true', () => {
                 const gameLogic = new GameLogic(rule, ships, shoots);
-                const actual = gameLogic.isAdjacent(shipObj);
+                const actual = gameLogic.isAdjacent(_.merge(shipObj, { coordinateX: 10, coordinateY: 10, life: 4 }));
                 assert.isTrue(actual);
             });
 
             it('should return false', () => {
                 const gameLogic = new GameLogic(rule, ships, shoots);
-                const actual = gameLogic.isAdjacent(_.merge(shipObj, { coordinateX: 5, isHorizontal: true }));
+                const actual = gameLogic.isAdjacent(_.merge(shipObj, {
+                    coordinateX: 5,
+                    coordinateY: 3,
+                    isHorizontal: true,
+                }));
                 assert.isFalse(actual);
             });
         });
@@ -107,7 +111,7 @@ module.exports = () => {
         describe('isOverlay()', () => {
             it('should return true', () => {
                 const gameLogic = new GameLogic(rule, ships, shoots);
-                const actual = gameLogic.isOverlay(shipObj);
+                const actual = gameLogic.isOverlay(_.merge(shipObj, { life: 3 }));
                 assert.isTrue(actual);
             });
 
