@@ -1,5 +1,5 @@
 module.exports = {
-    up: (queryInterface, Sequelize) => queryInterface.createTable('turns', {
+    up: (queryInterface, Sequelize) => queryInterface.createTable('game_ships', {
         id: {
             allowNull: false,
             autoIncrement: true,
@@ -16,10 +16,30 @@ module.exports = {
             field: 'coordinate_y',
             type: Sequelize.INTEGER,
         },
-        status: {
+        endCoordinateX: {
             allowNull: false,
-            defaultValue: 'miss',
-            type: Sequelize.ENUM('hit', 'miss'),
+            field: 'end_coordinate_x',
+            type: Sequelize.INTEGER,
+        },
+        endCoordinateY: {
+            allowNull: false,
+            field: 'end_coordinate_y',
+            type: Sequelize.INTEGER,
+        },
+        isHorizontal: {
+            defaultValue: false,
+            field: 'is_horizontal',
+            type: Sequelize.BOOLEAN,
+        },
+        shipId: {
+            allowNull: false,
+            field: 'ship_id',
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'ships',
+                key: 'id',
+            },
+            unique: false,
         },
         gameId: {
             allowNull: false,
@@ -29,6 +49,16 @@ module.exports = {
                 model: 'games',
                 key: 'id',
             },
+            unique: false,
+        },
+        baseHealth: {
+            defaultValue: 0,
+            field: 'base_health',
+            type: Sequelize.INTEGER,
+        },
+        health: {
+            defaultValue: 0,
+            type: Sequelize.INTEGER,
         },
         createdAt: {
             allowNull: false,
@@ -47,5 +77,5 @@ module.exports = {
             type: Sequelize.DATE,
         },
     }),
-    down: queryInterface => queryInterface.dropTable('turns'),
+    down: queryInterface => queryInterface.dropTable('game_ships'),
 };

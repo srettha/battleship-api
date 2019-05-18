@@ -8,7 +8,7 @@ module.exports = {
         },
         status: {
             defaultValue: 'draft',
-            type: Sequelize.ENUM('draft', 'in-progress', 'finished'),
+            type: Sequelize.ENUM('aborted', 'draft', 'in-progress', 'finished'),
         },
         ruleId: {
             allowNull: false,

@@ -1,18 +1,19 @@
 module.exports = {
-    up: (queryInterface, Sequelize) => queryInterface.createTable('game_ships', {
+    up: (queryInterface, Sequelize) => queryInterface.createTable('rule_ships', {
         id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER,
         },
-        coordinate: {
+        ruleId: {
             allowNull: false,
-            type: Sequelize.STRING,
-        },
-        isHorizontal: {
-            defaultValue: false,
-            type: Sequelize.BOOLEAN,
+            field: 'rule_id',
+            type: Sequelize.INTEGER,
+            references: {
+                model: 'rules',
+                key: 'id',
+            },
         },
         shipId: {
             allowNull: false,
@@ -23,17 +24,9 @@ module.exports = {
                 key: 'id',
             },
         },
-        health: {
-            type: Sequelize.INTEGER,
-        },
-        gameId: {
+        number: {
             allowNull: false,
-            field: 'game_id',
             type: Sequelize.INTEGER,
-            references: {
-                model: 'games',
-                key: 'id',
-            },
         },
         createdAt: {
             allowNull: false,
@@ -52,5 +45,5 @@ module.exports = {
             type: Sequelize.DATE,
         },
     }),
-    down: queryInterface => queryInterface.dropTable('game_ships'),
+    down: queryInterface => queryInterface.dropTable('rule_ships'),
 };

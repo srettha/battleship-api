@@ -1,47 +1,39 @@
 module.exports = (sequelize, DataTypes) => {
-    const GameShips = sequelize.define('GameShips', {
-        coordinate: {
+    const RuleShips = sequelize.define('RuleShips', {
+        ruleId: {
             allowNull: false,
-            type: DataTypes.STRING,
-        },
-        isHorizontal: {
-            defaultValue: false,
-            type: DataTypes.BOOLEAN,
+            field: 'rule_id',
+            type: DataTypes.INTEGER,
         },
         shipId: {
             allowNull: false,
+            field: 'ship_id',
             type: DataTypes.INTEGER,
         },
-        health: {
-            type: DataTypes.INTEGER,
-        },
-        gameId: {
+        number: {
             allowNull: false,
             type: DataTypes.INTEGER,
         },
         createdAt: {
             allowNull: false,
             defaultValue: sequelize.fn('NOW'),
+            field: 'created_at',
             type: DataTypes.DATE,
         },
         updatedAt: {
             allowNull: false,
             defaultValue: sequelize.fn('NOW'),
+            field: 'updated_at',
             type: DataTypes.DATE,
         },
         deletedAt: {
+            field: 'deleted_at',
             type: DataTypes.DATE,
         },
     }, {
         paranoid: true,
-        tableName: 'game_ships',
-        underscore: true,
+        tableName: 'rule_ships',
     });
 
-    GameShips.associate = ({ Game, Ship }) => {
-        GameShips.belongsTo(Ship, { as: 'ships', foreignKey: 'ship_id', targetKey: 'id' });
-        GameShips.belongsTo(Game, { as: 'games', foreignKey: 'game_id', targetKey: 'id' });
-    };
-
-    return GameShips;
+    return RuleShips;
 };

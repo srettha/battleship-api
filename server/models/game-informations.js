@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Turn = sequelize.define('Turn', {
+    const GameInformations = sequelize.define('GameInformations', {
         coordinateX: {
             allowNull: false,
             field: 'coordinate_x',
@@ -10,14 +10,40 @@ module.exports = (sequelize, DataTypes) => {
             field: 'coordinate_y',
             type: DataTypes.NUMBER,
         },
-        status: {
+        endCoordinateX: {
             allowNull: false,
-            defaultValue: 'miss',
-            type: DataTypes.ENUM('hit', 'miss'),
+            field: 'end_coordinate_x',
+            type: DataTypes.NUMBER,
+        },
+        endCoordinateY: {
+            allowNull: false,
+            field: 'end_coordinate_y',
+            type: DataTypes.NUMBER,
+        },
+        isHorizontal: {
+            defaultValue: false,
+            field: 'is_horizontal',
+            type: DataTypes.BOOLEAN,
         },
         gameId: {
             allowNull: false,
             field: 'game_id',
+            type: DataTypes.INTEGER,
+            unique: false,
+        },
+        shipId: {
+            allowNull: false,
+            field: 'ship_id',
+            type: DataTypes.INTEGER,
+            unique: false,
+        },
+        baseHealth: {
+            defaultValue: 0,
+            field: 'base_health',
+            type: DataTypes.INTEGER,
+        },
+        health: {
+            defaultValue: 0,
             type: DataTypes.INTEGER,
         },
         createdAt: {
@@ -38,10 +64,8 @@ module.exports = (sequelize, DataTypes) => {
         },
     }, {
         paranoid: true,
-        tableName: 'turns',
+        tableName: 'game_ships',
     });
-    Turn.associate = ({ Game }) => {
-        Turn.belongsTo(Game, { as: 'games', foreignKey: 'gameId', targetKey: 'id' });
-    };
-    return Turn;
+
+    return GameInformations;
 };

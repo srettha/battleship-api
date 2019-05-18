@@ -2,34 +2,43 @@ module.exports = (sequelize, DataTypes) => {
     const Game = sequelize.define('Game', {
         status: {
             defaultValue: 'draft',
-            type: DataTypes.ENUM('draft', 'in-progress', 'finished'),
+            type: DataTypes.ENUM('aborted', 'draft', 'in-progress', 'finished'),
         },
         ruleId: {
             allowNull: false,
+            field: 'rule_id',
             type: DataTypes.INTEGER,
         },
         createdAt: {
             allowNull: false,
             defaultValue: sequelize.fn('NOW'),
+            field: 'created_at',
             type: DataTypes.DATE,
         },
         updatedAt: {
             allowNull: false,
             defaultValue: sequelize.fn('NOW'),
+            field: 'updated_at',
             type: DataTypes.DATE,
         },
         deletedAt: {
+            field: 'deleted_at',
             type: DataTypes.DATE,
         },
     }, {
         paranoid: true,
         tableName: 'games',
-        underscore: true,
     });
 
-    Game.associate = ({ GameShips, Turn }) => {
-        Game.hasMany(GameShips, { as: 'ships', foreignKey: 'game_id', sourceKey: 'id' });
-        Game.hasMany(Turn, { as: 'turns', foreignKey: 'game_id', sourceKey: 'id' });
+    Game.associate = ({ Rule, Ship, Turn }) => {
+        Game.belongsTo(Rule, { as: 'rule', foreignKey: 'ruleId', targetKey: 'id' });
+        Game.belongsToMany(Ship, {
+            as: 'ships',
+            foreignKey: 'gameId',
+            otherKey: 'shipId',
+            through: 'GameInformations',
+        });
+        Game.hasMany(Turn, { as: 'turns', foreignKey: 'gameId', sourceKey: 'id' });
     };
 
     return Game;
