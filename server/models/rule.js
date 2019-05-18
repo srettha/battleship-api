@@ -10,14 +10,35 @@ module.exports = (sequelize, DataTypes) => {
             field: 'coordinate_y',
             type: DataTypes.NUMBER,
         },
+        createdAt: {
+            allowNull: false,
+            defaultValue: sequelize.fn('NOW'),
+            field: 'created_at',
+            type: DataTypes.DATE,
+        },
+        updatedAt: {
+            allowNull: false,
+            defaultValue: sequelize.fn('NOW'),
+            field: 'updated_at',
+            type: DataTypes.DATE,
+        },
+        deletedAt: {
+            field: 'deleted_at',
+            type: DataTypes.DATE,
+        },
     }, {
         paranoid: true,
         tableName: 'rules',
-        underscore: true,
     });
 
-    Rule.associate = ({ Game }) => {
-        Rule.hasMany(Game, { foreignKey: 'rule_id' });
+    Rule.associate = ({ Game, Ship }) => {
+        Rule.hasMany(Game, { as: 'games', foreignKey: 'ruleId', sourceKey: 'id' });
+        Rule.belongsToMany(Ship, {
+            as: 'ships',
+            foreignKey: 'ruleId',
+            otherKey: 'shipId',
+            through: 'RuleShips',
+        });
     };
 
     return Rule;

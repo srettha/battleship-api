@@ -6,9 +6,15 @@ module.exports = {
             primaryKey: true,
             type: Sequelize.INTEGER,
         },
-        coordinate: {
+        coordinateX: {
             allowNull: false,
-            type: Sequelize.STRING,
+            field: 'coordinate_x',
+            type: Sequelize.INTEGER,
+        },
+        coordinateY: {
+            allowNull: false,
+            field: 'coordinate_y',
+            type: Sequelize.INTEGER,
         },
         status: {
             allowNull: false,
