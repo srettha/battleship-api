@@ -66,7 +66,10 @@ module.exports = () => {
 
         describe('endGame()', () => {
             it('should return true', () => {
-                const newShipObj = _.concat(shoots, { coordinateX: 10, coordinateY: 10 }, { coordinateX: 6, coordinateY: 6 });
+                const newShipObj = _.concat(shoots, {
+                    coordinateX: 10,
+                    coordinateY: 10,
+                }, { coordinateX: 6, coordinateY: 6 });
                 const gameLogic = new GameLogic(rule, ships, newShipObj);
                 const actual = gameLogic.endGame();
                 assert.isTrue(actual);
