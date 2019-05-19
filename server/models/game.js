@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const Game = sequelize.define('Game', {
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER,
+        },
         status: {
             defaultValue: 'draft',
             type: DataTypes.ENUM('aborted', 'draft', 'in-progress', 'finished'),

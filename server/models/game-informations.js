@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const GameInformations = sequelize.define('GameInformations', {
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER,
+        },
         coordinateX: {
             allowNull: false,
             field: 'coordinate_x',

@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const Turn = sequelize.define('Turn', {
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER,
+        },
         coordinateX: {
             allowNull: false,
             field: 'coordinate_x',
