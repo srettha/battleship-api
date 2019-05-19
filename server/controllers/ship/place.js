@@ -18,10 +18,10 @@ const requestSchema = {
     },
 };
 
-module.exports.requestSchema = requestSchema;
 module.exports = async (req, res) => {
     await gameService.startGame(req.body);
     res.status(HttpStatus.CREATED).json({
         message: `placed ${req.body.name} at x:${req.body.coordinate.x} y:${req.body.coordinate.y}`,
     });
 };
+module.exports.requestSchema = requestSchema;

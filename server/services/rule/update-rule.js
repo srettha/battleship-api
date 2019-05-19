@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 const { Rule } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Update rule with id and updateObject

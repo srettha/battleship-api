@@ -5,7 +5,7 @@ const { sequelize } = require('../../models');
 const GameLogic = require('../../lib/game');
 const ShipPlacement = require('../../lib/ship');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError, BattleshipValidationError } = require('../../errors');
 
 const gameService = require('../game');
 const gameInformationService = require('../game-informations');
@@ -32,7 +32,7 @@ module.exports = async (coordinate) => {
 
     const turn = await getTurn({ coordinateX: coordinate.x, coordinateY: coordinate.y, gameId: game.id });
     if (turn) {
-        throw new BattleshipError('Attack coordination does not allow or illegal', HttpStatus.BAD_REQUEST);
+        throw new BattleshipValidationError('Attack coordination does not allow or illegal', { coordinate });
     }
 
     const gameLogic = new GameLogic(game.rule, game.ships, game.turns);
@@ -101,6 +101,6 @@ module.exports = async (coordinate) => {
         return { status };
     } catch (err) {
         await transaction.rollback();
-        throw err;
+        throw new BattleshipError(err);
     }
 };

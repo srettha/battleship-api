@@ -19,7 +19,7 @@ const routes = [
         path: '/attack',
         method: 'POST',
         middleware: [
-            createJoiValidation(gameController.attack.requestSchema),
+            createJoiValidation(turnController.attack.requestSchema),
         ],
         handler: turnController.attack,
     },

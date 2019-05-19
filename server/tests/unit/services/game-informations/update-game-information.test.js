@@ -45,6 +45,7 @@ module.exports = () => {
                 await gameInformationService.updateGameInformation({ gameId, shipId }, gameInformationObj);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipError');
                 assert.equal(err.message, 'Game information not found');
                 assert.equal(err.statusCode, HttpStatus.NOT_FOUND);
             }

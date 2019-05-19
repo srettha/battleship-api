@@ -104,6 +104,7 @@ module.exports = () => {
                 await turnService.attack({ x: coordinate.x, y: coordinate.y });
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipError');
                 assert.equal(err.message, 'Player needs to place all ships before start attacking');
                 assert.equal(err.statusCode, HttpStatus.UNAUTHORIZED);
             }
@@ -120,6 +121,7 @@ module.exports = () => {
                 await turnService.attack({ x: coordinate.x, y: coordinate.y });
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipValidationError');
                 assert.equal(err.message, 'Attack coordination does not allow or illegal');
                 assert.equal(err.statusCode, HttpStatus.BAD_REQUEST);
             }

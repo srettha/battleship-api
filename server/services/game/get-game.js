@@ -2,7 +2,7 @@ const HttpStatus = require('http-status');
 
 const { Game } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Get game with primary key from Database
@@ -15,7 +15,7 @@ module.exports = async (id) => {
     });
 
     if (!game) {
-        throw new BattleshipError('Game not found', HttpStatus.NOT_FOUND);
+        throw new BattleshipError('Game not found', HttpStatus.NOT_FOUND, { id });
     }
 
     return game;

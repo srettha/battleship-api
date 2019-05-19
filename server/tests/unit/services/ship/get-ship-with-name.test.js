@@ -37,6 +37,7 @@ module.exports = () => {
                 await shipService.getShipWithName(name);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipError');
                 assert.equal(err.message, 'Ship not found');
                 assert.equal(err.statusCode, HttpStatus.NOT_FOUND);
             }

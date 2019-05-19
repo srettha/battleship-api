@@ -2,7 +2,7 @@ const HttpStatus = require('http-status');
 
 const { Rule, Ship } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Get rule with its coordinate from database

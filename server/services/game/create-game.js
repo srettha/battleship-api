@@ -1,9 +1,8 @@
-const HttpStatus = require('http-status');
 const { Op } = require('sequelize');
 
 const { Game } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipValidationError } = require('../../errors');
 
 /**
  * Create new game
@@ -23,7 +22,7 @@ module.exports = async (createObj, sequelizeOptions = {}) => {
     });
 
     if (isExisted) {
-        throw new BattleshipError('Duplicated Game', HttpStatus.BAD_REQUEST);
+        throw new BattleshipValidationError('Duplicated Game', createObj);
     }
 
     const game = await Game.create(createObj, sequelizeOptions);

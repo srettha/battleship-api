@@ -1,8 +1,6 @@
-const HttpStatus = require('http-status');
-
 const { Ship } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipValidationError } = require('../../errors');
 
 /**
  * Create new ship
@@ -12,7 +10,7 @@ const { BattleshipError } = require('../../utilities');
 module.exports = async (queryObj) => {
     const [ship, created] = await Ship.findOrCreate(queryObj, { default: queryObj });
     if (!created) {
-        throw new BattleshipError('Duplicated Ship', HttpStatus.BAD_REQUEST);
+        throw new BattleshipValidationError('Duplicated Ship', queryObj);
     }
 
     return ship;

@@ -1,13 +1,4 @@
-const HttpStatus = require('http-status');
 const _ = require('lodash');
-
-class BattleshipError extends Error {
-    constructor(message, statusCode = HttpStatus.BAD_GATEWAY) {
-        super(message);
-        this.name = this.constructor.name;
-        this.statusCode = statusCode;
-    }
-}
 
 /**
  * Check whether given function is async or not
@@ -60,7 +51,7 @@ function setRoutes(router, routes) {
         let args = [];
 
         if (route.middleware) {
-            args.push(wrapAll(router.middleware));
+            args.push(wrapAll(route.middleware));
         }
 
         if (route.handler) {
@@ -68,12 +59,12 @@ function setRoutes(router, routes) {
         }
 
         args = _.flatten(args);
+
         router[route.method.toLowerCase()](route.path, ...args);
     });
 }
 
 module.exports = {
-    BattleshipError,
     isAsyncFunction,
     setRoutes,
     wrap,

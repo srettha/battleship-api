@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 
 const { Game } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Reset game status to abort

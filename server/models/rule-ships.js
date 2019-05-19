@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const RuleShips = sequelize.define('RuleShips', {
+        id: {
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER,
+        },
         ruleId: {
             allowNull: false,
             field: 'rule_id',

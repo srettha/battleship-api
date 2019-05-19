@@ -20,7 +20,7 @@ app.use((err, _req, res, next) => {
         return;
     }
 
-    const errObj = _.pick(err, 'message');
+    const errObj = _.pick(err, 'message', 'meta');
     let { statusCode } = err;
 
     if (!statusCode) {

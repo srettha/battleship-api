@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 const { Game } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Update game with id and updateObject

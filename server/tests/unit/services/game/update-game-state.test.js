@@ -34,8 +34,9 @@ module.exports = () => {
         beforeEach(() => {
             sandbox = sinon.createSandbox();
 
-            [rule] = modelFactory(Rule);
             ships = modelFactory(Ship, {}, {}, 4);
+            [rule] = modelFactory(Rule, { ships }, { include: [{ as: 'ships', model: Ship }] });
+
             turn = modelFactory(Turn);
             turns = modelFactory(Turn, {}, {}, 4);
 
@@ -69,7 +70,7 @@ module.exports = () => {
             );
 
             gameInformation = modelFactory(GameInformations, { gameId: 1, shipId: 1 });
-            gameInformations = modelFactory(GameInformations, { gameId: 1 }, {}, 4);
+            gameInformations = modelFactory(GameInformations, { id: 1, gameId: 1 }, {}, 4);
         });
 
         afterEach(() => {

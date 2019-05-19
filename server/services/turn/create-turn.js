@@ -2,7 +2,7 @@ const HttpStatus = require('http-status');
 
 const { Turn } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 const getTurn = require('./get-turn');
 

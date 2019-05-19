@@ -29,6 +29,7 @@ module.exports = () => {
                 await gameService.deleteGame(1);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipError');
                 assert.equal(err.message, 'Game not found');
                 assert.equal(err.statusCode, HttpStatus.NOT_FOUND);
             }
