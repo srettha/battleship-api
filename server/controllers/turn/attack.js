@@ -12,7 +12,6 @@ const requestSchema = {
     },
 };
 
-module.exports.requestSchema = requestSchema;
 module.exports = async (req, res) => {
     const { coordinate } = req.body;
     const {
@@ -49,3 +48,4 @@ module.exports = async (req, res) => {
 
     return res.status(HttpStatus.OK);
 };
+module.exports.requestSchema = requestSchema;
