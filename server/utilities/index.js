@@ -60,7 +60,7 @@ function setRoutes(router, routes) {
         let args = [];
 
         if (route.middleware) {
-            args.push(wrapAll(router.middleware));
+            args.push(wrapAll(route.middleware));
         }
 
         if (route.handler) {
@@ -68,6 +68,7 @@ function setRoutes(router, routes) {
         }
 
         args = _.flatten(args);
+
         router[route.method.toLowerCase()](route.path, ...args);
     });
 }
