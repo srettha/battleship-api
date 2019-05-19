@@ -51,6 +51,7 @@ module.exports = () => {
                 await gameService.getGameStatus();
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipError');
                 assert.equal(err.message, 'Last game is either aborted or finished');
                 assert.equal(err.statusCode, HttpStatus.NOT_FOUND);
             }

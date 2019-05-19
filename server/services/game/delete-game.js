@@ -2,7 +2,7 @@ const HttpStatus = require('http-status');
 
 const { Game } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Soft delete game
@@ -12,6 +12,6 @@ const { BattleshipError } = require('../../utilities');
 module.exports = async (id) => {
     const count = await Game.destroy(id);
     if (count === 0) {
-        throw new BattleshipError('Game not found', HttpStatus.NOT_FOUND);
+        throw new BattleshipError('Game not found', HttpStatus.NOT_FOUND, { id });
     }
 };

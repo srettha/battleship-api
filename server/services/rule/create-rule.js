@@ -1,8 +1,6 @@
-const HttpStatus = require('http-status');
-
 const { Rule } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipValidationError } = require('../../errors');
 
 /**
  * Create new rule
@@ -12,7 +10,7 @@ const { BattleshipError } = require('../../utilities');
 module.exports = async (queryObj) => {
     const [rule, created] = await Rule.findOrCreate(queryObj, { default: queryObj });
     if (!created) {
-        throw new BattleshipError('Duplicated Rule', HttpStatus.BAD_REQUEST);
+        throw new BattleshipValidationError('Duplicated Rule', queryObj);
     }
 
     return rule;

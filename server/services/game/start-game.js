@@ -1,8 +1,6 @@
-const HttpStatus = require('http-status');
-
 const { sequelize } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError, BattleshipValidationError } = require('../../errors');
 
 const GameLogic = require('../../lib/game');
 const ShipPlacement = require('../../lib/ship');
@@ -56,13 +54,13 @@ module.exports = async ({
         const shipPlacement = new ShipPlacement(rule.ships, []);
 
         if (!shipPlacement.isPlaceable(ship)) {
-            throw new BattleshipError('Ship placement does not allow or illegal', HttpStatus.BAD_REQUEST);
+            throw new BattleshipValidationError('Ship placement does not allow or illegal', { name, coordinate, direction });
         }
 
         const gamelogic = new GameLogic(rule, []);
 
         if (gamelogic.isAdjacent(shipObj) || gamelogic.isOverlay(shipObj)) {
-            throw new BattleshipError('Ship placement does not allow or illegal', HttpStatus.BAD_REQUEST);
+            throw new BattleshipValidationError('Ship placement does not allow or illegal', { name, coordinate, direction });
         }
 
         try {
@@ -93,13 +91,13 @@ module.exports = async ({
     const shipPlacement = new ShipPlacement(rule.ships, game.ships);
 
     if (!shipPlacement.isPlaceable(ship)) {
-        throw new BattleshipError('Ship placement does not allow or illegal', HttpStatus.BAD_REQUEST);
+        throw new BattleshipValidationError('Ship placement does not allow or illegal', { name, coordinate, direction });
     }
 
     const gamelogic = new GameLogic(rule, game.ships);
 
     if (gamelogic.isAdjacent(shipObj) || gamelogic.isOverlay(shipObj)) {
-        throw new BattleshipError('Ship placement does not allow or illegal', HttpStatus.BAD_REQUEST);
+        throw new BattleshipValidationError('Ship placement does not allow or illegal', { name, coordinate, direction });
     }
 
     await gameInformationService.createGameInformation({

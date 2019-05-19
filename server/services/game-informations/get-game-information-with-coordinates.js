@@ -4,7 +4,7 @@ const { Op } = require('sequelize');
 
 const { GameInformations } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Get game information based on coordinate

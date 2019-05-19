@@ -85,6 +85,7 @@ module.exports = () => {
                 await gameService.startGame(startGameObj);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipValidationError');
                 assert.equal(err.message, 'Ship placement does not allow or illegal');
                 assert.equal(err.statusCode, HttpStatus.BAD_REQUEST);
             }
@@ -109,6 +110,7 @@ module.exports = () => {
                 await gameService.startGame(startGameObj);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipValidationError');
                 assert.equal(err.message, 'Ship placement does not allow or illegal');
                 assert.equal(err.statusCode, HttpStatus.BAD_REQUEST);
             }
@@ -156,6 +158,7 @@ module.exports = () => {
                 await gameService.startGame(startGameObj);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipValidationError');
                 assert.equal(err.message, 'Ship placement does not allow or illegal');
                 assert.equal(err.statusCode, HttpStatus.BAD_REQUEST);
             }
@@ -180,6 +183,7 @@ module.exports = () => {
                 await gameService.startGame(startGameObj);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipValidationError');
                 assert.equal(err.message, 'Ship placement does not allow or illegal');
                 assert.equal(err.statusCode, HttpStatus.BAD_REQUEST);
             }

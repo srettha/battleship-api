@@ -8,7 +8,7 @@ const {
     Turn,
 } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 const gameInformationService = require('../game-informations');
 

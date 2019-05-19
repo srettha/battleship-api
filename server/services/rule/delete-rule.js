@@ -2,7 +2,7 @@ const HttpStatus = require('http-status');
 
 const { Rule } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Soft delete rule

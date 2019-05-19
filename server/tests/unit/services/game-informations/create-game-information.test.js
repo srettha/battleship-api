@@ -47,6 +47,7 @@ module.exports = () => {
                 await gameInformationService.createGameInformation(gameInformationObj);
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipValidationError');
                 assert.equal(err.message, 'Duplicated Game information');
                 assert.equal(err.statusCode, HttpStatus.BAD_REQUEST);
             }

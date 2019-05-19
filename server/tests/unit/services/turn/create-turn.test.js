@@ -43,6 +43,7 @@ module.exports = () => {
                 await turnService.createTurn();
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipError');
                 assert.equal(err.message, 'Player needs to place all ships before start attacking');
                 assert.equal(err.statusCode, HttpStatus.UNAUTHORIZED);
             }

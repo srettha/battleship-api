@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 const { Ship } = require('../../models');
 
-const { BattleshipError } = require('../../utilities');
+const { BattleshipError } = require('../../errors');
 
 /**
  * Update ship with id and updateObject

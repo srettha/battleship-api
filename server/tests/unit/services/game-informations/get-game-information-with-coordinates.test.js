@@ -1,5 +1,4 @@
 const chai = require('chai');
-const faker = require('faker');
 const HttpStatus = require('http-status');
 const sinon = require('sinon');
 
@@ -20,8 +19,10 @@ module.exports = () => {
         const shipId = 1;
 
         let gameInformation;
+        let gameInformations;
 
-        const coordinate = { x: faker.random.number(10), y: faker.random.number(10) };
+        const coordinate = { x: 5, y: 5 };
+        const endCoordinate = { x: 10, y: 10 };
 
         beforeEach(() => {
             sandbox = sinon.createSandbox();
@@ -32,6 +33,15 @@ module.exports = () => {
                 gameId,
                 shipId,
             });
+
+            gameInformations = modelFactory(GameInformations, {
+                coordinateX: coordinate.x,
+                coordinateY: coordinate.y,
+                endCoordinateX: endCoordinate.x,
+                endCoordinateY: endCoordinate.y,
+                gameId,
+                shipId,
+            }, {}, 4);
         });
 
         afterEach(() => {
@@ -46,12 +56,13 @@ module.exports = () => {
                 await gameInformationService.getGameInformationWithCoordinate(coordinate, { gameId, shipId });
                 assert.fail('it should fail but pass');
             } catch (err) {
+                assert.equal(err.name, 'BattleshipError');
                 assert.equal(err.message, 'Game information not found');
                 assert.equal(err.statusCode, HttpStatus.NOT_FOUND);
             }
         });
 
-        it('should return game information', async () => {
+        it('should return game information (array === 1)', async () => {
             sandbox.stub(GameInformations, 'findAll')
                 .resolves(gameInformation);
 
@@ -63,6 +74,23 @@ module.exports = () => {
                 },
             );
             assert.equal(actual, gameInformation);
+        });
+
+        it('should return game information (array > 1)', async () => {
+            sandbox.stub(GameInformations, 'findAll')
+                .resolves(gameInformations);
+
+            const actual = await gameInformationService.getGameInformationWithCoordinate(
+                coordinate,
+                {
+                    gameId,
+                    shipId,
+                },
+            );
+            assert.isAtLeast(actual.coordinateX, coordinate.x);
+            assert.isAtLeast(actual.coordinateY, coordinate.y);
+            assert.isAtMost(actual.coordinateX, endCoordinate.x);
+            assert.isAtMost(actual.coordinateY, endCoordinate.y);
         });
     });
 };
