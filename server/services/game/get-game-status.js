@@ -6,6 +6,7 @@ const getReadyGame = require('./get-ready-game');
 
 /**
  * Get current game status
+ * @returns {Object}
  */
 module.exports = async () => {
     const game = await getReadyGame();
@@ -26,11 +27,11 @@ module.exports = async () => {
                 endingCoordinateY: ship.endingCoordinateY,
             };
         })
-        .values();
+        .value();
 
     const turns = _.chain(game.turns)
         .map(turn => _.pick(turn, ['coordinateX', 'coordinateY', 'status']))
-        .values();
+        .value();
 
     return {
         ocean: gameLogic.getLayout(),
