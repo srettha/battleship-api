@@ -4,6 +4,7 @@ const gameController = require('../controllers/game');
 const shipController = require('../controllers/ship');
 const turnController = require('../controllers/turn');
 
+const { createJoiValidation } = require('../middlewares');
 const { setRoutes } = require('../utilities');
 
 const router = express.Router();
@@ -18,7 +19,7 @@ const routes = [
         path: '/attack',
         method: 'POST',
         middleware: [
-            // createJoiValidation(gameController.attack.requestSchema),
+            createJoiValidation(gameController.attack.requestSchema),
         ],
         handler: turnController.attack,
     },
@@ -31,7 +32,7 @@ const routes = [
         path: '/ship',
         method: 'POST',
         middleware: [
-            // createJoiValidation(shipController.place.requestSchema),
+            createJoiValidation(shipController.place.requestSchema),
         ],
         handler: shipController.place,
     },
