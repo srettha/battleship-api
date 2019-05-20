@@ -7,7 +7,7 @@
 
 This project is built to demonstrate Battleship game which is simple yet challenging problem to solve. The application provides simple endpoints for user to use as follows:
 
-1. **/api/** - Get the current state of the ocean an the fleet
+1. **/api** - Get the current state of the ocean an the fleet
 
 1. **/api/attack** - Attack to a specific target on the ocean. User can attack on any specific target on the ocean by giving coordinates. The application will check across the system to see first whether the fleet is empty or not. Then check whether it's illegal to attack or not
 
