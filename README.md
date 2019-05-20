@@ -5,7 +5,7 @@
 
 ## About this project
 
-This project is built to demonstrate Battleship game which is simple yet challenging problem to solve. The application provides simple endpoints for user to use as follows:
+This project is built to demonstrate Battleship game which is simple yet challenging problem to solve. The application provides simple endpoints for users to use as follows:
 
 1. **/api** - Get the current state of the ocean an the fleet
 
@@ -88,6 +88,7 @@ With the given time constraint, this project is quickly put together to demonstr
     - Query history of the games, with this functionality the sytem can return history of the game or even leaderboard for the whole application.
 
 ### 3. Normalize database
+    - Start off with changing model name e.g. `RuleShips` to something more meaningful. Continue with normalizing database by removing some of unnecessary fields and so on.
 
 ### 4. Convert to Typescript
 
