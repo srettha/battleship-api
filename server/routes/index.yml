@@ -1,0 +1,105 @@
+/:
+  get:
+    tags:
+      - battleship
+    summary: Get the current state of the ocean and the fleet
+    produces: application/json
+    responses:
+      200:
+        description: Successfully retreived status of ocean and fleet
+      404:
+        description: Game not found
+
+/attack:
+  post:
+    tags:
+      - battleship
+    summary: Attack to a specific target on the ocean
+    produces: application/json
+    parameters:
+      - name: attack
+        description: attack object
+        in: body
+        schema:
+          properties:
+            coordinate:
+              type: object
+              properties:
+                x:
+                  example: 5
+                  minimum: 1
+                  type: integer
+                y:
+                  example: 5
+                  minimum: 1
+                  type: integer
+    responses:
+      200:
+        description: Successfully attack to given coordinates
+      400:
+        description: Attack does not allow or illegal (attack at any attacked coordinates)
+      401:
+        description: Player needs to place all ships before start attacking
+
+/reset:
+  post:
+    tags:
+      - battleship
+    summary: Reset the game to an initial state
+    produces: application/json
+    responses:
+      200:
+        description: Successfully reset game state
+      404:
+        description: Game not found in in-progress state
+
+/ship:
+  post:
+    tags:
+      - battleship
+    summary: Place a single ship into the ocean
+    produces: application/json
+    parameters:
+      - name: ship
+        description: ship placement object
+        in: body
+        schema:
+          properties:
+            name:
+              example: Battleship
+              type: string
+            coordinate:
+              type: object
+              properties:
+                x:
+                  example: 5
+                  minimum: 1
+                  type: integer
+                y:
+                  example: 7
+                  minimum: 1
+                  type: integer
+            direction:
+              enum: [horizontal, vertical]
+              example: horizontal
+              type: string
+            ruleCoordinate:
+              type: object
+              properties:
+                coordinateX:
+                  example: 10
+                  minimum: 1
+                  type: integer
+                coordinateY:
+                  example: 10
+                  minimum: 1
+                  type: integer
+        required:
+          - name
+          - coordinate
+          - direction
+    responses:
+      200:
+        description: Successfully placed ship on given coordinates
+      400:
+        description: Placement does not allow or illegal (adjacent or overlay)

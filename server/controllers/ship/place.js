@@ -10,7 +10,7 @@ const requestSchema = {
             x: Joi.number().required(),
             y: Joi.number().required(),
         }).required(),
-        direciton: Joi.string().valid('horizontal', 'vertical').required(),
+        direction: Joi.string().valid('horizontal', 'vertical').required(),
         ruleCoordinate: Joi.object({
             coordinateX: Joi.number().required(),
             coordinateY: Joi.number().required(),

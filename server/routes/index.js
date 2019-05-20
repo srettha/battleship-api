@@ -9,6 +9,34 @@ const { setRoutes } = require('../utilities');
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * tags:
+ *   name: battleship
+ *   description: Operation related to battleship
+*/
+
+/**
+ * @swagger
+ * parameters:
+ *   coordinate:
+ *     type: object
+ *     required:
+ *       - coordinate
+ *     properties:
+ *       coordinate:
+ *         type: object
+ *         properties:
+ *           x:
+ *             example: 5
+ *             minimum: 1
+ *             type: integer
+ *           y:
+ *             example: 5
+ *             minimum: 1
+ *             type: integer
+*/
+
 const routes = [
     {
         path: '/',
