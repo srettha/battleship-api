@@ -7,9 +7,10 @@
 
 This project is built to demonstrate Battleship game which is simple yet challenging problem to solve. The application provides simple endpoints for user to use as follows:
 
-1. **/api/** - Get the current state of the ocean an the fleet
+### 1. **/api/** - Get the current state of the ocean an the fleet
 
-1. **/api/attack** - Attack to a specific target on the ocean. User can attack on any specific target on the ocean by giving coordinates. The application will check across the system to see first whether the fleet is empty or not. Then check whether it's illegal to attack or not.
+### 2. **/api/attack** - Attack to a specific target on the ocean. User can attack on any specific target on the ocean by giving coordinates. The application will check across the system to see first whether the fleet is empty or not. Then check whether it's illegal to attack or not
+
     - If player attempt to attack any attacked coordinates or illegal to attack, the application shall reject the request and return `BAD_REQUEST` error
     - If the fleet is not empty, the application shall reject the request and return `UNAUTHORIZED` error
 
@@ -18,13 +19,32 @@ This project is built to demonstrate Battleship game which is simple yet challen
     - If the attack sink that target(ship), the application shall return message containing which ship has been sunk
     - If the attack sink the last target(ship), the application shall return message `Gameover` along with `number of shots were fired` and `missed shots`.
 
-1. **/api/reset** - Reset game to an initial state
+### 3. **/api/reset** - Reset game to an initial state
 
-1. **/api/ship** - Place a single ship into the ocean. User can place ship on any specific place on the ocean by giving ship name along with coordinate and ship direction (horizontal or vertical). The application will check across the system to see first whether that particular type of ship can be placed or not. Then check whether it's illegal to place on that particular coordinate or not (adjacent or overlay).
+### 4. **/api/ship** - Place a single ship into the ocean. User can place ship on any specific place on the ocean by giving ship name along with coordinate and ship direction (horizontal or vertical). The application will check across the system to see first whether that particular type of ship can be placed or not. Then check whether it's illegal to place on that particular coordinate or not (adjacent or overlay)
+    
     - If not, the application shall return `placed` message with ship type
     - If yes, the application shall reject the request and return `BAD_REQUEST` error
 
-The application itself also comes with its own api documentation: **/api-docs**
+## API documentation
+
+Here is a __[link](https://documenter.getpostman.com/view/4100480/S1M3w655?version=latest)__ an example of `API` calls from POSTMAN
+
+In `API` calls from POSTMAN, There is example of api requests to complete the whole game.
+
+- [`Ship placement`](https://documenter.getpostman.com/view/4100480/S1M3w655?version=latest#00434d63-97f5-46b5-8b7e-3391ad3031ff) folder which contains subfolders inside for each type of ship will place standard ships to the ocean (Battleship, Cruiser, Destroyer and Submarine)
+
+- [`Attack`](https://documenter.getpostman.com/view/4100480/S1M3w655?version=latest#5b5ea461-5afe-4018-8082-7d7a8ecbec9e) which contains subfolders inside will attack every ships on the ocean
+
+- [`Get game's status`](https://documenter.getpostman.com/view/4100480/S1M3w655?version=latest#e0a183ed-2644-4928-a66e-0d16c8b56e6f) will get current game status
+
+- [`Reset game`](https://documenter.getpostman.com/view/4100480/S1M3w655?version=latest#8d563399-026e-4c14-a986-bc4abc9138b9) will reset game back to original state
+
+The application itself also comes with its own api documentation: **/api-docs** with the help of these libraries:
+
+- `swagger-js-doc`
+
+- `swagger-ui`
 
 ## Getting Started
 
