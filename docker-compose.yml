@@ -11,7 +11,6 @@ services:
   api:
     build:
       context: ./server
-      dockerfile: dockerfile.dev
       target: dev
     container_name: battleship-api
     depends_on:
