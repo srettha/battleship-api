@@ -16,7 +16,7 @@
         "db:migrate": "sequelize db:migrate",
         "db:seed": "sequelize db:seed:all",
         "dev": "NODE_ENV=development yarn db:migrate && yarn db:seed && DEBUG='*' nodemon -L server.js",
-        "test": "NODE_ENV=test mocha --reporter=mochawesome --reporter-options reportDir=./.reports/mocha ./tests/**/*.test.js",
+        "test": "mocha --reporter=mochawesome --reporter-options reportDir=./.reports/mocha ./tests/**/*.test.js",
         "ci:test": "nyc npm test",
         "lint": "eslint --max-warnings 10 --ext .js .",
         "ci:lint": "eslint --format=html --output-file ./.reports/eslint/eslint.html --max-warnings 10 --ext .js .",
@@ -51,7 +51,6 @@
         "nodemon": "^1.19.0",
         "nyc": "^14.1.1",
         "pre-commit": "^1.2.2",
-        "sinon": "^7.3.2",
-        "supertest": "^4.0.2"
+        "sinon": "^7.3.2"
     }
 }
