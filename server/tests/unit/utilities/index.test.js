@@ -48,7 +48,7 @@ describe('utilities', () => {
     });
 
     describe('setRoutes()', () => {
-        it('should set routes to router', () => {
+        it('should do nothing to router (no handler)', () => {
             router = express.Router();
             const spyRouter = sandbox.spy(router);
             const routes = [
@@ -56,6 +56,19 @@ describe('utilities', () => {
                     path: '/',
                     method: 'GET',
                     middleware: [],
+                },
+            ];
+            utilities.setRoutes(router, routes);
+            assert.equal(spyRouter.stack.length, 0);
+        });
+
+        it('should set routes to router', () => {
+            router = express.Router();
+            const spyRouter = sandbox.spy(router);
+            const routes = [
+                {
+                    path: '/',
+                    method: 'GET',
                     handler: (_req, res) => res.status(200),
                 },
             ];

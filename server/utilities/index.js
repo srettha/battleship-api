@@ -54,9 +54,7 @@ function setRoutes(router, routes) {
             args.push(wrapAll(route.middleware));
         }
 
-        if (route.handler) {
-            args.push(wrap(route.handler));
-        }
+        args.push(wrap(route.handler));
 
         args = _.flatten(args);
 
