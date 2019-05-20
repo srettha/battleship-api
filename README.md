@@ -7,9 +7,9 @@
 
 This project is built to demonstrate Battleship game which is simple yet challenging problem to solve. The application provides simple endpoints for user to use as follows:
 
-### 1. **/api/** - Get the current state of the ocean an the fleet
+1. **/api/** - Get the current state of the ocean an the fleet
 
-### 2. **/api/attack** - Attack to a specific target on the ocean. User can attack on any specific target on the ocean by giving coordinates. The application will check across the system to see first whether the fleet is empty or not. Then check whether it's illegal to attack or not
+1. **/api/attack** - Attack to a specific target on the ocean. User can attack on any specific target on the ocean by giving coordinates. The application will check across the system to see first whether the fleet is empty or not. Then check whether it's illegal to attack or not
 
     - If player attempt to attack any attacked coordinates or illegal to attack, the application shall reject the request and return `BAD_REQUEST` error
     - If the fleet is not empty, the application shall reject the request and return `UNAUTHORIZED` error
@@ -19,10 +19,10 @@ This project is built to demonstrate Battleship game which is simple yet challen
     - If the attack sink that target(ship), the application shall return message containing which ship has been sunk
     - If the attack sink the last target(ship), the application shall return message `Gameover` along with `number of shots were fired` and `missed shots`.
 
-### 3. **/api/reset** - Reset game to an initial state
+1. **/api/reset** - Reset game to an initial state
 
-### 4. **/api/ship** - Place a single ship into the ocean. User can place ship on any specific place on the ocean by giving ship name along with coordinate and ship direction (horizontal or vertical). The application will check across the system to see first whether that particular type of ship can be placed or not. Then check whether it's illegal to place on that particular coordinate or not (adjacent or overlay)
-    
+1. **/api/ship** - Place a single ship into the ocean. User can place ship on any specific place on the ocean by giving ship name along with coordinate and ship direction (horizontal or vertical). The application will check across the system to see first whether that particular type of ship can be placed or not. Then check whether it's illegal to place on that particular coordinate or not (adjacent or overlay)
+
     - If not, the application shall return `placed` message with ship type
     - If yes, the application shall reject the request and return `BAD_REQUEST` error
 
