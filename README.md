@@ -24,7 +24,15 @@ This project is built to demonstrate Battleship game which is simple yet challen
     - If not, the application shall return `placed` message with ship type
     - If yes, the application shall reject the request and return `BAD_REQUEST` error
 
-The application itself also comes with its own api documentation: **/api-docs**
+## API documentation
+
+Here is a __[link](https://documenter.getpostman.com/view/4100480/S1M3w655?version=latest)__ an example of `API` calls from POSTMAN
+
+The application itself also comes with its own api documentation: **/api-docs** with the help of these libraries:
+
+- `swagger-js-doc`
+
+- `swagger-ui`
 
 ## Getting Started
 
