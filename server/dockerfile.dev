@@ -1,12 +1,15 @@
-FROM node
+FROM node:10-slim
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/app && chown -R node:node /usr/src/app
+
 WORKDIR /usr/src/app
+
+USER node
 
 RUN yarn global add sequelize-cli
 
-COPY package.json .
-COPY yarn.lock .
+COPY --chown=node:node package.json yarn.lock ./
+
 RUN yarn
 
-COPY . .
+COPY --chown=node:node . .
